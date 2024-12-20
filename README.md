@@ -20,10 +20,10 @@ Indicaciones:
 Papel y Tijera y le da clic en el botón Jugar.
 
 - Debajo, en el próximo apartado aparecen los siguientes textos:
-   ->Al arrancar la página: ¡Vamos a Jugar!
-   ->Cuando la jugadora introduzca un movimiento que coincida con al movimiento aleatorio se muestra el mensaje: Empate.
-   ->Cuando la jugadora introduzca un movimiento que gane al movimiento aleatorio se muestra el mensaje: ¡Has Ganado!
-   ->Cuando la jugadora introduzca un movimiento que falle al movimiento aleatorio se muestra el mensaje: ¡Has perdido!
+   - Al arrancar la página: ¡Vamos a Jugar!
+   - Cuando la jugadora introduzca un movimiento que coincida con al movimiento aleatorio se muestra el mensaje: Empate.
+   - Cuando la jugadora introduzca un movimiento que gane al movimiento aleatorio se muestra el mensaje: ¡Has Ganado!
+   - Cuando la jugadora introduzca un movimiento que falle al movimiento aleatorio se muestra el mensaje: ¡Has perdido!
 
 ## Pasos para realizar el juego
 
