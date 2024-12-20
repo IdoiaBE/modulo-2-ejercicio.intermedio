@@ -15,10 +15,13 @@
 
 #gameOptions {
   font-family: $font-text;
+  padding: 3px;
 }
 
 #playGame {
   font-family: $font-text;
+  padding: 3px 16px;
+  cursor: pointer;
 }
 
 .hidden {
