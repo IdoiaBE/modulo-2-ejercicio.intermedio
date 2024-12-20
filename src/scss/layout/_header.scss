@@ -4,9 +4,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
-.header_title {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 28px;
+  &_title {
+    font-family: $font-title;
+    font-size: 28px;
+  }
+
+  &_intruction {
+    font-family: $font-main;
+    font-size: 18px;
+  }
 }
