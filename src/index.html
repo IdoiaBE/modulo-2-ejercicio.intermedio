@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Piedra, Papel y Tijera</title>
+    <link rel="stylesheet" href="./scss/main.scss" />
+    <link rel="icon" href="./images/favicon.png" />
+</head>
+
+<body>
+    
+
+    <header class="header">
+        <h1 class="header_title">Juego clásico: Piedra, papel o tijera.</h1>
+        <h2 class="header_instruction">Introduce aquí tu jugada</h2>
+    </header>
+
+    <main>
+        <section class="play">
+            <select name="gameOptions" class="js-select">
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="rock">Piedra</option>
+                <option value="paper">Papel</option>
+                <option value="scissors">Tijera</option>
+            </select>
+            <button class="js-btn">Jugar</button>
+        </section>
+
+        <section>
+            <p class="js-myAction"></p>
+
+            <span class=" hidden js-versus">vs.</span>
+
+            <p class="js-computerAction"></p>
+        </section>
+
+        <p class="js-text">Vamos a jugar!</p>
+    </main>
+
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
