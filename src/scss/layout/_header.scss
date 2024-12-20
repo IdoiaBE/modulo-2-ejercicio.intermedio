@@ -1,17 +1,13 @@
 .header {    
   height: 20vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 5%;
 
   &_title {
     font-family: $font-title;
     font-size: 28px;
-  }
-
-  &_intruction {
-    font-family: $font-main;
-    font-size: 18px;
   }
 }

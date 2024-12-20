@@ -7,7 +7,7 @@
     <title>Juego Piedra, Papel y Tijera</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Frank+Ruhl+Libre:wght@300..900&family=Frijole&family=Londrina+Shadow&family=Martel+Sans:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Caveat+Brush&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Frank+Ruhl+Libre:wght@300..900&family=Frijole&family=Hind+Madurai:wght@300;400;500;600;700&family=Londrina+Shadow&family=Martel+Sans:wght@200;300;400;600;700;800;900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./scss/main.scss" />
     <link rel="icon" href="./images/favicon.png" />
 </head>
@@ -18,20 +18,20 @@
         <h1 class="header_title">Juego clásico: Piedra, papel o tijera.</h1>
     </header>
 
-    <main>
-        <h2 class="header_instruction">Introduce aquí tu jugada</h2>
+    <main class="main">
+        <h2 class="main_instruction">Introduce aquí tu jugada</h2>
 
         <section class="play">
-            <select name="gameOptions" class="js-select" >
+            <select id="gameOptions" class="js-select" >
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="rock">Piedra</option>
                 <option value="paper">Papel</option>
                 <option value="scissors">Tijera</option>
             </select>
-            <button class="js-btn">Jugar</button>
+            <button class="js-btn" id="playGame">Jugar</button>
         </section>
 
-        <section>
+        <section class="graphics">
             <p class="js-myAction"></p>
 
             <span class=" hidden js-versus">vs.</span>
@@ -42,7 +42,9 @@
         <p class="js-text">Vamos a jugar!</p>
     </main>
 
-    <footer></footer>
+    <footer class="footer">
+        <p>Idoia Belloso Elola &copy; 2024</p>
+    </footer>
 
     <script src="./js/main.js"></script>
 </body>
