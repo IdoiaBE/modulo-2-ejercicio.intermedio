@@ -1,9 +1,9 @@
 :root {
 	--shiny-cta-bg: #4f4338;
 	--shiny-cta-bg-subtle: #c6c4bb;
-	--shiny-cta-fg: #ffffff;
+	--shiny-cta-fg: #f3e6ae;
 	--shiny-cta-highlight: rgb(215, 191, 54);
-	--shiny-cta-highlight-subtle: #ffe884;
+	--shiny-cta-highlight-subtle: #ffffff;
   }
 
   @property --gradient-angle {
@@ -31,7 +31,6 @@
   }
 
   .shiny-cta {
-	min-width: 30%;
 	--animation: gradient-angle linear infinite;
 	--duration: 3s;
 	--shadow-size: 2px;
@@ -40,10 +39,10 @@
 	overflow: hidden;
 	cursor: pointer;
 	outline-offset: 4px;
-	padding: 5px 15px;
-	font-family: inherit;
-	font-size: 1.125rem;
+	font-family: $font-text;
+  	font-size: 16px;
 	line-height: 1.2;
+	padding: 10px;
 	border: 1px solid transparent;
 	border-radius: 360px;
 	color: var(--shiny-cta-fg);
