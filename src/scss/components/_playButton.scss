@@ -1,56 +1,191 @@
-@property --a { /* must register --a to animate it */
-	syntax: '<angle>';
+:root {
+	--shiny-cta-bg: #4f4338;
+	--shiny-cta-bg-subtle: #c6c4bb;
+	--shiny-cta-fg: #ffffff;
+	--shiny-cta-highlight: rgb(215, 191, 54);
+	--shiny-cta-highlight-subtle: #ffe884;
+  }
+
+  @property --gradient-angle {
+	syntax: "<angle>";
 	initial-value: 0deg;
-	/* used only on pseudo, nowhere to be inherited, 
-	 * better perf if set false, see 
-	 * https://www.bram.us/2024/10/03/benchmarking-the-performance-of-css-property/ */
-	inherits: false
-}
+	inherits: false;
+  }
+  
+  @property --gradient-angle-offset {
+	syntax: "<angle>";
+	initial-value: 0deg;
+	inherits: false;
+  }
+  
+  @property --gradient-percent {
+	syntax: "<percentage>";
+	initial-value: 5%;
+	inherits: false;
+  }
+  
+  @property --gradient-shine {
+	syntax: "<color>";
+	initial-value: white;
+	inherits: false;
+  }
 
-#playGame {
-	/* hide outer part of glow */
-	overflow: hidden;
-	/* needed for absolutely positioned pseudo */
+  .shiny-cta {
+	min-width: 30%;
+	--animation: gradient-angle linear infinite;
+	--duration: 3s;
+	--shadow-size: 2px;
+	isolation: isolate;
 	position: relative;
-	/* adjust width as needed IF it's even necessary to set */
-	width: Min(12.5em, 80vmin);
-	/* adjust aspect-ratio OR height IF height not given by content */
-	aspect-ratio: 1;
-	/* round outer card corners */
-	border-radius: .5em;
-	
-	/* text & layout styles below just for prettifying */
-	place-self: center;
-	place-content: center;
-	padding: .5em;
-	color: #ededed;
-	font: clamp(1em, 2vw + 2vh, 2em) sans-serif;
-	text-align: center;
-	text-transform: uppercase;
-	text-wrap: balance
-}
-
-#playGame::before {
-	/* grid doesn't work for stacking when a stacked item is text node */
-	position: absolute;
-	/* place behind card content, so card text is selectable, etc */
+	overflow: hidden;
+	cursor: pointer;
+	outline-offset: 4px;
+	padding: 5px 15px;
+	font-family: inherit;
+	font-size: 1.125rem;
+	line-height: 1.2;
+	border: 1px solid transparent;
+	border-radius: 360px;
+	color: var(--shiny-cta-fg);
+	background: linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg))
+		padding-box,
+	  conic-gradient(
+		  from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+		  transparent,
+		  var(--shiny-cta-highlight) var(--gradient-percent),
+		  var(--gradient-shine) calc(var(--gradient-percent) * 2),
+		  var(--shiny-cta-highlight) calc(var(--gradient-percent) * 3),
+		  transparent calc(var(--gradient-percent) * 4)
+		)
+		border-box;
+	box-shadow: inset 0 0 0 1px var(--shiny-cta-bg-subtle);
+  
+	&::before,
+	&::after,
+	span::before {
+	  content: "";
+	  pointer-events: none;
+	  position: absolute;
+	  inset-inline-start: 50%;
+	  inset-block-start: 50%;
+	  translate: -50% -50%;
+	  z-index: -1;
+	}
+  
+	&:active {
+	  translate: 0 1px;
+	}
+  }
+  
+  /* Dots pattern */
+  .shiny-cta::before {
+	--size: calc(100% - var(--shadow-size) * 3);
+	--position: 2px;
+	--space: calc(var(--position) * 2);
+	width: var(--size);
+	height: var(--size);
+	background: radial-gradient(
+		circle at var(--position) var(--position),
+		white calc(var(--position) / 4),
+		transparent 0
+	  )
+	  padding-box;
+	background-size: var(--space) var(--space);
+	background-repeat: space;
+	mask-image: conic-gradient(
+	  from calc(var(--gradient-angle) + 45deg),
+	  black,
+	  transparent 10% 90%,
+	  black
+	);
+	border-radius: inherit;
+	opacity: 0.4;
 	z-index: -1;
-	/* best if inset is at least half the border-width with minus */
-	inset: -1em;
-	/* reserve space for border */
-	border: solid 1.25em;
-	border-image: 
-		/* adjust gradient as needed, I just used a random palette */
-		conic-gradient(from var(--a), #669900, #99cc33, #ccee66, 
-				#006699, #3399cc, #990066, #cc3399, 
-				#ff6600, #ff9900, #ffcc00, #669900) 1;
-	/* blur this pseudo */
-	filter: blur(.75em);
-	/* tweak animation duration as necessary */
-	animation: a 4s linear infinite;
-	/* needed so pseudo is displayed */
-	content: ''
-}
-
-/* animate --a from its initial-value 0deg to 1turn */
-@keyframes a { to { --a: 1turn } }
+  }
+  
+  /* Inner shimmer */
+  .shiny-cta::after {
+	--animation: shimmer linear infinite;
+	width: 100%;
+	aspect-ratio: 1;
+	background: linear-gradient(
+	  -50deg,
+	  transparent,
+	  var(--shiny-cta-highlight),
+	  transparent
+	);
+	mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+	opacity: 0.6;
+  }
+  
+  .shiny-cta span {
+	z-index: 1;
+  
+	&::before {
+	  --size: calc(100% + 1rem);
+	  width: var(--size);
+	  height: var(--size);
+	  box-shadow: inset 0 -1ex 2rem 4px var(--shiny-cta-highlight);
+	  opacity: 0;
+	}
+  }
+  
+  /* Animate */
+  .shiny-cta {
+	--transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
+	transition: var(--transition);
+	transition-property: --gradient-angle-offset, --gradient-percent,
+	  --gradient-shine;
+  
+	&,
+	&::before,
+	&::after {
+	  animation: var(--animation) var(--duration),
+		var(--animation) calc(var(--duration) / 0.4) reverse paused;
+	  animation-composition: add;
+	}
+  
+	span::before {
+	  transition: opacity var(--transition);
+	  animation: calc(var(--duration) * 1.5) breathe linear infinite;
+	}
+  }
+  
+  .shiny-cta:is(:hover, :focus-visible) {
+	--gradient-percent: 20%;
+	--gradient-angle-offset: 95deg;
+	--gradient-shine: var(--shiny-cta-highlight-subtle);
+  
+	&,
+	&::before,
+	&::after {
+	  animation-play-state: running;
+	}
+  
+	span::before {
+	  opacity: 1;
+	}
+  }
+  
+  @keyframes gradient-angle {
+	to {
+	  --gradient-angle: 360deg;
+	}
+  }
+  
+  @keyframes shimmer {
+	to {
+	  rotate: 360deg;
+	}
+  }
+  
+  @keyframes breathe {
+	from,
+	to {
+	  scale: 1;
+	}
+	50% {
+	  scale: 1.2;
+	}
+  }
+  

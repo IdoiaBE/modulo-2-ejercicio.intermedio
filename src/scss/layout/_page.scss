@@ -13,6 +13,12 @@
   }
 }
 
+.play {
+  width: 100%;
+  padding: 5% 10%;
+  text-align: center;
+}
+
 #gameOptions {
   font-family: $font-text;
   padding: 3px;
@@ -24,6 +30,3 @@
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
-}
